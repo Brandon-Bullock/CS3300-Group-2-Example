@@ -1,10 +1,20 @@
 class ArticlesController < ApplicationController
     
+    def index
+       @articles = Article.all 
+    end
+    
+     #show action
+    def show 
+        @article = Article.find(params[:id])
+    end
+    
     # new action
     def new
         @article = Article.new
     end
     
+    #edit article action
     def edit
        @article = Article.find(params[:id]) 
     end
@@ -20,6 +30,7 @@ class ArticlesController < ApplicationController
         end
     end
     
+    # update article action
     def update
         @article = Article.find(params[:id])
         
@@ -30,13 +41,12 @@ class ArticlesController < ApplicationController
         end
     end
     
-    #show action
-    def show 
-        @article = Article.find(params[:id])
-    end
-    
-    def index
-       @articles = Article.all 
+    # delete article action
+    def destroy
+       @article = Article.find(params[:id]) 
+       @article.destroy
+       
+       redirect_to articles_path
     end
     
     # **PRIVATE METHODS**
